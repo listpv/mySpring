@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -12,10 +14,21 @@ public class CartService {
 
     private ProductRepository productRepository;
 
+//    @Autowired
+//    public void setProductRepository(ProductRepository productRepository) {
+//        this.productRepository = productRepository;
+//    }
+
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+        List<Product> sourceProductList = productRepository.findAll();
+        List<Product> distProductList = new ArrayList<>();
+        for(Product product : sourceProductList){
+            distProductList.add(product);
+        }
+        this.productRepository = new ProductRepository(distProductList);
     }
+
 
     //добавление продукта.
     public void addProduct(Product product){

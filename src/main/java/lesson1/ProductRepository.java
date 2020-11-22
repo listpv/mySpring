@@ -15,6 +15,10 @@ public class ProductRepository {
     public ProductRepository() {
     }
 
+    public ProductRepository(List<Product> productList) {
+        this.productList = productList;
+    }
+
     @PostConstruct
     public void init(){
         productList.add(new Product(1l, "apple", 50.0));
