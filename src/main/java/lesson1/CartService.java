@@ -14,20 +14,20 @@ public class CartService {
 
     private ProductRepository productRepository;
 
-//    @Autowired
-//    public void setProductRepository(ProductRepository productRepository) {
-//        this.productRepository = productRepository;
-//    }
-
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
-        List<Product> sourceProductList = productRepository.findAll();
-        List<Product> distProductList = new ArrayList<>();
-        for(Product product : sourceProductList){
-            distProductList.add(product);
-        }
-        this.productRepository = new ProductRepository(distProductList);
+        this.productRepository = productRepository;
     }
+
+//    @Autowired
+//    public void setProductRepository(ProductRepository productRepository) {
+//        List<Product> sourceProductList = productRepository.findAll();
+//        List<Product> distProductList = new ArrayList<>();
+//        for(Product product : sourceProductList){
+//            distProductList.add(product);
+//        }
+//        this.productRepository = new ProductRepository(distProductList);
+//    }
 
 
     //добавление продукта.

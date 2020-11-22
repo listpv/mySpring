@@ -1,5 +1,6 @@
 package lesson1;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -8,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
+@Scope("prototype")
 public class ProductRepository {
 
     private List<Product> productList = new ArrayList<>();
@@ -15,9 +17,9 @@ public class ProductRepository {
     public ProductRepository() {
     }
 
-    public ProductRepository(List<Product> productList) {
-        this.productList = productList;
-    }
+//    public ProductRepository(List<Product> productList) {
+//        this.productList = productList;
+//    }
 
     @PostConstruct
     public void init(){

@@ -17,20 +17,30 @@ public class Main {
 //        System.out.println(productRepository.findProduct(1l));
 
 
-        CartService cartService = context.getBean("cartService", CartService.class);
-        System.out.println(cartService.getProductList());
-        System.out.println(cartService.sumOfProducts());
-        System.out.println(cartService.totalPrise());
-        System.out.println(cartService.removeProduct(6l));
-        System.out.println(cartService.removeProduct(5l));
-        System.out.println(cartService.getProductList());
-        System.out.println(cartService.sumOfProducts());
-        System.out.println(cartService.totalPrise());
-        cartService.addProduct(new Product(5l, "pinapple", 90.0));
-        System.out.println(cartService.getProductList());
-        System.out.println(cartService.sumOfProducts());
-        System.out.println(cartService.totalPrise());
-        System.out.println(cartService.getProductRepository().findProduct(1l));
+        CartService cartService1 = context.getBean("cartService", CartService.class);
+        System.out.println("cartService1 " + cartService1.getProductList());
+        System.out.println("cartService1 " + cartService1.sumOfProducts());
+        System.out.println("cartService1 " + cartService1.totalPrise());
+        System.out.println("cartService1 " + cartService1.removeProduct(6l));
+        System.out.println("cartService1 " + cartService1.removeProduct(5l));
+        CartService cartService2 = context.getBean("cartService", CartService.class);
+        System.out.println("cartService1 " + cartService1.getProductList());
+        System.out.println("cartService2 " + cartService2.getProductList());
+        System.out.println("cartService1 " + cartService1.sumOfProducts());
+        System.out.println("cartService2 " + cartService2.sumOfProducts());
+        System.out.println("cartService1 " + cartService1.totalPrise());
+        cartService2.addProduct(new Product(6l, "watermelon", 50.0));
+        CartService cartService3 = context.getBean("cartService", CartService.class);
+        System.out.println("cartService1 " + cartService1.getProductList());
+        System.out.println("cartService2 " + cartService2.getProductList());
+        System.out.println("cartService3 " + cartService3.getProductList());
+        System.out.println("cartService1 " + cartService1.sumOfProducts());
+        System.out.println("cartService2 " + cartService2.sumOfProducts());
+        System.out.println("cartService3 " + cartService3.sumOfProducts());
+        System.out.println("cartService1 " + cartService1.totalPrise());
+        System.out.println("cartService2 " + cartService2.totalPrise());
+        System.out.println("cartService3 " + cartService3.totalPrise());
+        System.out.println("cartService1 " + cartService1.getProductRepository().findProduct(1l));
 
     }
 }
