@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-@Scope("prototype")
 public class ProductRepository {
 
     private List<Product> productList = new ArrayList<>();
@@ -17,9 +16,6 @@ public class ProductRepository {
     public ProductRepository() {
     }
 
-//    public ProductRepository(List<Product> productList) {
-//        this.productList = productList;
-//    }
 
     @PostConstruct
     public void init(){

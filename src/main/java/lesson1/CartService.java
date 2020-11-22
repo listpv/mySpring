@@ -13,52 +13,61 @@ import java.util.List;
 public class CartService {
 
     private ProductRepository productRepository;
+    private List<Product> productList;
 
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
+        productList = new ArrayList<>();
     }
-
-//    @Autowired
-//    public void setProductRepository(ProductRepository productRepository) {
-//        List<Product> sourceProductList = productRepository.findAll();
-//        List<Product> distProductList = new ArrayList<>();
-//        for(Product product : sourceProductList){
-//            distProductList.add(product);
-//        }
-//        this.productRepository = new ProductRepository(distProductList);
-//    }
 
 
     //добавление продукта.
-    public void addProduct(Product product){
-        productRepository.addProduct(product);
+    public boolean addProduct(Long id){
+        Product product = productRepository.findProduct(id);
+        if(product == null){
+            return false;
+        }
+        return productList.add(product);
     }
 
     // удаление продукта.
     public boolean removeProduct(Long id){
-        return productRepository.removeProduct(id);
+        Product product = findProduct(id);
+        if(product == null){
+            return false;
+        }
+        return productList.remove(product);
+    }
+
+    public Product findProduct(Long id){
+        for(Product product : productList){
+            if(product.getId() == id){
+                return product;
+            }
+        }
+        return null;
     }
 
     // количество продуктов.
     public Integer sumOfProducts(){
-        return productRepository.findAll().size();
+        return Collections.unmodifiableCollection(productList).size();
     }
 
     // цена всех продуктов в корзине.
     public Double totalPrise(){
         Double totalSum = 0.0;
-        for(Product product : productRepository.findAll()){
+        for(Product product : Collections.unmodifiableCollection(productList)){
             totalSum += product.getPrice();
         }
         return totalSum;
     }
 
     public List<Product> getProductList(){
-        return productRepository.findAll();
+        return Collections.unmodifiableList(productList);
     }
 
-    public ProductRepository getProductRepository() {
-        return productRepository;
+    public List<Product> getProductRepository() {
+        return productRepository.findAll();
     }
 }
