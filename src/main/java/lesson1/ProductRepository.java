@@ -29,7 +29,7 @@ public class ProductRepository {
     // метод, позволяющий найти продукт по id.
     public Product findProduct(Long id){
         for(Product product : productList){
-            if(product.getId() == id){
+            if(product.getId().equals(id)){
                 return product;
             }
         }

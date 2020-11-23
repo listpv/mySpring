@@ -42,7 +42,7 @@ public class CartService {
 
     public Product findProduct(Long id){
         for(Product product : productList){
-            if(product.getId() == id){
+            if(product.getId().equals(id)){
                 return product;
             }
         }
@@ -57,7 +57,7 @@ public class CartService {
     // цена всех продуктов в корзине.
     public Double totalPrise(){
         Double totalSum = 0.0;
-        for(Product product : Collections.unmodifiableCollection(productList)){
+        for(Product product :productList){
             totalSum += product.getPrice();
         }
         return totalSum;
